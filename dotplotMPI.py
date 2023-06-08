@@ -40,14 +40,14 @@ Secuencia2 = Secuencia1"""
 # Dividir la secuencia1 en chunks, uno por cada proceso.
 chunks = np.array_split(range(len(Secuencia1)), size)
 
-dotplot = np.empty([len(chunks[rank]),len(Secuencia2)],dtype=np.int32)
+dotplot = np.empty([len(chunks[rank]),len(Secuencia2)],dtype=np.int8)
 
 for i in range(len(chunks[rank])):
     for j in range(len(Secuencia2)):
         if Secuencia1[chunks[rank][i]] == Secuencia2[j]:
-            dotplot[i,j] = np.int32(1)
+            dotplot[i,j] = np.int8(1)
         else:
-            dotplot[i,j] = np.int32(0)
+            dotplot[i,j] = np.int8(0)
 
 """plt.figure(figsize=(10,10))
 plt.imshow(dotplot, cmap='Greys',aspect='auto')
